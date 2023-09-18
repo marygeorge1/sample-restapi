@@ -15,7 +15,7 @@ pipeline {
             steps{
                 dir("sample-restapi"){
                 dir("demoapi"){
-                    sh "mvn clean install"
+                    sh "JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64 mvn -V clean install"
                 }
                 }
             }
@@ -23,7 +23,10 @@ pipeline {
         stage("Test"){
             steps{
                 dir("sample-restapi"){
-                sh "mvn test"
+                dir("demoapi"){
+                    sh "JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64 mvn test" 
+                }
+               
                }
             }
         }
