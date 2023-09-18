@@ -1,0 +1,31 @@
+pipeline {
+    agent any
+    stages {
+        stage("Clean Up"){
+            steps {
+                deleteDir()
+            }
+        }
+        stage("Clone Repo"){
+            steps {
+                sh "git clone https://github.com/marygeorge1/sample-restapi.git"
+            }
+        }
+        stage("Build"){
+            steps{
+                dir("sample-restapi"){
+                dir("demoapi"){
+                    sh "mvn clean install"
+                }
+                }
+            }
+        }
+        stage("Test"){
+            steps{
+                dir("sample-restapi"){
+                sh "mvn test"
+               }
+            }
+        }
+    }
+}
