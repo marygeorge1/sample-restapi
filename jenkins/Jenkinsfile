@@ -17,6 +17,12 @@ pipeline {
             }
         }
 
+        stage("feature final"){
+            steps{
+                echo "Finished Feature"
+            }
+        }
+
     }
 }
 
