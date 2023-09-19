@@ -1,27 +1,18 @@
 pipeline {
     agent any
     stages{
-        stage("first"){
-            steps{
-                sh "echo pwd"
-            }
-        }
+        
         stage("Build"){
             steps{
-                
                 dir("demoapi"){
                     sh "JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64 mvn -V clean install"
-                }
-                
+                }    
             }
         }
         stage("Test"){
             steps{
-                dir("sample-restapi"){
                 dir("demoapi"){
                     sh "JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64 mvn test" 
-                }
-               
                }
             }
         }
