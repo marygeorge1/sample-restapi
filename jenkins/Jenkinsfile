@@ -1,6 +1,11 @@
 pipeline {
     agent any
     stages{
+        stage("first"){
+            steps{
+                sh "echo pwd"
+            }
+        }
         stage("Build"){
             steps{
                 dir("sample-restapi"){
